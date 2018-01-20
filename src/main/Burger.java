@@ -82,6 +82,7 @@ public class Burger {
 	 */
 	public void removePatty() {
 		myBurgerBottom.pop();
+		myPattyCount--;
 	}
 	
 	/**
@@ -158,15 +159,6 @@ public class Burger {
 	public void removeIngredient(String theType) {
 		
 	}
-	
-	/**
-	 * Converts the Burger to a String for display.
-	 */
-	@Override
-	public String toString() {
-		
-		return null;		
-	}	
 	
 	/**
 	 * Helper method that puts cheese on bottom bun. 
@@ -273,4 +265,26 @@ public class Burger {
 		
 		myBurgerTop.push(Ingredients.BUN);
 	}
+	
+	/**
+	 * Converts the Burger to a String for display.
+	 * Empties both burger stack fields in process.
+	 */
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder();
+		sb.append("[");
+		//Builds full burger in correct order (top - bottom) in myBurgerBottom stack.
+		while (!myBurgerTop.isEmpty()) {
+			myBurgerBottom.push(myBurgerTop.pop());
+		}
+		//Appends ingredients in myBottomBurger (all ingredients for burger) to string.
+		while (!myBurgerBottom.isEmpty()) {
+			sb.append(myBurgerBottom.pop());
+			sb.append(", ");
+		}
+		sb.delete(sb.length()-2, sb.length());
+		sb.append("]");
+		return sb.toString();		
+	}	
 }

@@ -4,7 +4,7 @@ package main;
  * List of all possible ingredients when constructing burger,
  * in order from bottom of burger, to top.
  * 
- * @author Alex Bledsoe, Benjamin Yuen
+ * @author Benjamin Yuen, Alex Bledsoe 
  * @version Jan 16, 2018
  */
 public interface Ingredients {
