@@ -1,5 +1,3 @@
-package main;
-
 /**
  * Custom singly Linked List implementation 
  * to be used with MyStack.

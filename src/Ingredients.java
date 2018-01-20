@@ -1,5 +1,3 @@
-package main;
-
 /**
  * List of all possible ingredients when constructing burger,
  * in order from top of burger, to bottom.

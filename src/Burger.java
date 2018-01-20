@@ -1,5 +1,3 @@
-package main;
-
 /**
  * Burger class that creates a burger based on a customers order. 
  * 

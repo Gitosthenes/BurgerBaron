@@ -1,5 +1,3 @@
-package main;
-
 /**
  * Custom Stack implementation using custom LinkedList under the hood.
  *
