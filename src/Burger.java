@@ -118,7 +118,27 @@ public class Burger {
 	 * @param theType item that will be remove to the Burger
 	 */
 	public void removeCategory(String theType) {
-		
+		MyStack<String> catHolder = new MyStack<>();
+		if (theType == "Cheese") {
+			//Removes cheddar, mozzarella, and pepperjack from top bun
+			removeIngredHelp(myBurgerBottom, catHolder, Ingredients.CHEDDAR, 
+					Ingredients.MOZZARELLA, Ingredients.PEPPERJACK);
+			
+		} else if (theType == "Sauce") {
+			//Removes mayonnaise and baron sauce on top bun
+			removeIngredHelp(myBurgerTop, catHolder, Ingredients.MAYONNAISE, Ingredients.BARON_SAUCE, "");
+			
+			//Removes ketchup and mustard on bottom bun
+			removeIngredHelp(myBurgerBottom, catHolder, Ingredients.KETCHUP, Ingredients.MUSTARD, "");
+			
+		} else if (theType == "Veggies") {
+			//Removes lettuce, tomato, and onions on top bun
+			removeIngredHelp(myBurgerTop, catHolder, Ingredients.LETTUCE, Ingredients.TOMATO, 
+					Ingredients.ONIONS);
+			
+			//Removes mushrooms on bottom bun
+			removeIngredHelp(myBurgerBottom, catHolder, Ingredients.MUSHROOMS, "", "");
+		}
 	}
 	
 	/**
@@ -155,7 +175,24 @@ public class Burger {
 	 * @param theType ingredient that will be remove to the Burger
 	 */
 	public void removeIngredient(String theType) {
+		MyStack<String> ingredHolder = new MyStack<>();
+		if (theType == Ingredients.CHEDDAR || theType == Ingredients.MOZZARELLA 
+				|| theType == Ingredients.PEPPERJACK) {
+			removeIngredHelp(myBurgerBottom, ingredHolder, theType, "", "");
+			
+		} else if (theType == Ingredients.MAYONNAISE || theType == Ingredients.BARON_SAUCE) {			
+			removeIngredHelp(myBurgerTop, ingredHolder, theType, "", "");
 		
+		} else if (theType == Ingredients.KETCHUP || theType == Ingredients.MUSTARD) {
+			removeIngredHelp(myBurgerBottom, ingredHolder, theType, "", "");
+			
+		} else if (theType == Ingredients.LETTUCE || theType == Ingredients.TOMATO
+				|| theType == Ingredients.ONIONS) {
+			removeIngredHelp(myBurgerTop, ingredHolder, theType, "", "");
+			
+		} else if (theType == Ingredients.MUSHROOMS) {
+			removeIngredHelp(myBurgerBottom, ingredHolder, theType, "", "");
+		}
 	}
 	
 	/**
@@ -225,6 +262,30 @@ public class Burger {
 		}			
 		currentBun.push(bottomSauce);
 		currentBun.push(topSauce);			
+		while (!holder.isEmpty()) {
+			currentBun.push(holder.pop());
+		}
+	}
+	
+	/**
+	 * Removes ingredients from the current bun.
+	 * 
+	 * @param currentBun either top or bottom bun 
+	 * @param holder holds ingredients
+	 * @param ingredBot ingredient on bottom
+	 * @param ingredMid ingredient in middle
+	 * @param ingredTop ingredient on top
+	 */
+	private void removeIngredHelp(MyStack<String> currentBun, MyStack<String> holder, 
+			String ingredBot, String ingredMid, String ingredTop) {
+		
+		while (!currentBun.isEmpty()) {
+			if (currentBun.peek() == ingredBot ||  currentBun.peek() == ingredMid 
+					|| currentBun.peek() == ingredTop) {
+				currentBun.pop();
+			} 
+			holder.push(currentBun.pop());			
+		}			
 		while (!holder.isEmpty()) {
 			currentBun.push(holder.pop());
 		}
