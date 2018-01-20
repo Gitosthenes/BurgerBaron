@@ -4,7 +4,7 @@ package main;
  * Custom singly Linked List implementation 
  * to be used with MyStack.
  *
- * @author Alex Bledsoe
+ * @author Alex Bledsoe, Benjamin Yuen
  * @version Jan 14, 2018
  */
 public class MyLinkedList<T> {
@@ -124,3 +124,4 @@ public class MyLinkedList<T> {
 		}
 	}
 }
+

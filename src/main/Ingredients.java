@@ -4,26 +4,27 @@ package main;
  * List of all possible ingredients when constructing burger,
  * in order from bottom of burger, to top.
  * 
- * @author Alex Bledsoe
+ * @author Alex Bledsoe, Benjamin Yuen
  * @version Jan 16, 2018
  */
-public enum Ingredients {
+public interface Ingredients {
 
-	BUN,
-	KETCHUP,
-	MUSTARD,
-	MUSHROOMS,
-	BEEF_PATTY,
-	CHICKEN_PATTY,
-	VEGGIE_PATTY,	
-	CHEDDAR,
-	MOZZARELLA,
-	PEPPERJACK,
-	ONIONS,
-	TOMATO,
-	LETTUCE,
-	BARON_SAUCE,
-	MAYONNAISE,
+	String BUN = "Bun";
+	String KETCHUP = "Ketchup";
+	String MUSTARD = "Mustard";
+	String MUSHROOMS = "Mushrooms";
+	String BEEF_PATTY = "Beef";
+	String CHICKEN_PATTY = "Chicken";
+	String VEGGIE_PATTY = "Veggie";
+	String CHEDDAR = "Cheddar";
+	String MOZZARELLA = "Mozzarella";
+	String PEPPERJACK = "Pepperjack";
+	String ONIONS = "Onions";
+	String TOMATO = "Tomato";
+	String LETTUCE = "Lettuce";
+	String BARON_SAUCE = "Barron-Sauce";
+	String MAYONNAISE = "Mayonnaise";
 	//Top bun goes here.
-	PICKLE
+	String PICKLE = "Pickle";
 }
+

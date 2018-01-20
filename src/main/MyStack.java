@@ -3,7 +3,7 @@ package main;
 /**
  * Custom Stack implementation using custom LinkedList under the hood.
  *
- * @author Alex Bledsoe
+ * @author Alex Bledsoe, Benjamin Yuen
  * @version Jan 14, 2018
  */
 public class MyStack<T> {
@@ -60,5 +60,13 @@ public class MyStack<T> {
 	 */
 	public boolean isEmpty() {
 		return myLinkedList.isEmpty();
+	}
+	
+	/**
+	 * 
+	 */
+	public String toString() {
+		return null;
+		
 	}
 }
