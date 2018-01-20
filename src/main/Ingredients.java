@@ -2,29 +2,28 @@ package main;
 
 /**
  * List of all possible ingredients when constructing burger,
- * in order from bottom of burger, to top.
+ * in order from top of burger, to bottom.
  * 
  * @author Benjamin Yuen, Alex Bledsoe 
  * @version Jan 16, 2018
  */
 public interface Ingredients {
 
-	String BUN = "Bun";
-	String KETCHUP = "Ketchup";
-	String MUSTARD = "Mustard";
-	String MUSHROOMS = "Mushrooms";
-	String BEEF_PATTY = "Beef";
-	String CHICKEN_PATTY = "Chicken";
-	String VEGGIE_PATTY = "Veggie";
-	String CHEDDAR = "Cheddar";
-	String MOZZARELLA = "Mozzarella";
-	String PEPPERJACK = "Pepperjack";
-	String ONIONS = "Onions";
-	String TOMATO = "Tomato";
-	String LETTUCE = "Lettuce";
-	String BARON_SAUCE = "Barron-Sauce";
-	String MAYONNAISE = "Mayonnaise";
-	//Top bun goes here.
 	String PICKLE = "Pickle";
+	String BUN = "Bun";
+	String MAYONNAISE = "Mayonnaise";
+	String BARON_SAUCE = "Barron-Sauce";
+	String LETTUCE = "Lettuce";
+	String TOMATO = "Tomato";
+	String ONIONS = "Onions";
+	String PEPPERJACK = "Pepperjack";
+	String MOZZARELLA = "Mozzarella";
+	String CHEDDAR = "Cheddar";
+	String VEGGIE_PATTY = "Veggie";
+	String CHICKEN_PATTY = "Chicken";
+	String BEEF_PATTY = "Beef";
+	String MUSHROOMS = "Mushrooms";
+	String MUSTARD = "Mustard";
+	String KETCHUP = "Ketchup";
+	//Bottom bun goes here.	
 }
-
