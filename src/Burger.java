@@ -62,7 +62,7 @@ public class Burger {
 			myBurgerBottom.push(cheeseHolder.pop());
 		}
 		while (currentPattyCount < myPattyCount) {
-			myBurgerBottom.push(cheeseHolder.pop());
+			myBurgerBottom.push(patty);
 			currentPattyCount++;
 		}
 	}

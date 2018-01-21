@@ -34,7 +34,8 @@ public class Main {
 //			}
 //		} finally {}
 		
-		testMyStack();
+		testParse();
+//		testMyStack();
 	}
 	
 	/**
@@ -77,7 +78,7 @@ public class Main {
 		//Tests isEmpty method by emptying the stack and verifying that it's empty.
 		System.out.println("\nTesting empty status of stack...\nCurrently Empty?(Expecting false): "
 						 + test.isEmpty() + "\n");
-		System.out.println("Emptying stack down to 10 element...");
+		System.out.println("Emptying stack down to 10 elements...");
 		for (int i = 0; i < 15; i++) {
 			test.pop();
 		}
