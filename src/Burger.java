@@ -94,7 +94,7 @@ public class Burger {
 		MyStack<String> catHolder = new MyStack<>();
 		//MyStack<String> holder2 = new MyStack<>();
 		if (theType.equals("Cheese")) {
-//			addCheese(catHolder, Ingredients.CHEDDAR, Ingredients.MOZZARELLA, Ingredients.PEPPERJACK);
+			addCheese(catHolder, Ingredients.CHEDDAR, Ingredients.MOZZARELLA, Ingredients.PEPPERJACK);
 			
 		} else if (theType.equals("Sauce")) {
 			//Puts mayonnaise and baron sauce on top bun
