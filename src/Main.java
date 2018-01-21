@@ -16,8 +16,8 @@ public class Main {
 	 * @throws IOException when file passed in cannot be found or is not a text file.
 	 */
 	public static void main(final String[] theArgs) throws IOException {
-//		FileReader inputStream = null;
-//		
+		FileReader inputStream = null;
+		
 //		try {
 //			for (final String arg : theArgs) {
 //				inputStream = new FileReader(arg);
@@ -106,7 +106,9 @@ public class Main {
 		parseLine("Burger");
 		parseLine("Baron Burger");
 		parseLine("Double Chicken Burger with Cheese Ketchup");
-		parseLine("Triple Veggie Baron Burger with no Veggies Mustard but Onions");
+		parseLine("Double Baron Burger with no Cheese but Mozzarella");
+		parseLine("Single Burger with Veggies but no Lettuce");
+		parseLine("Baron Burger with no Veggies Sauce but Baron-Sauce");
 	}
 	
 	/**
