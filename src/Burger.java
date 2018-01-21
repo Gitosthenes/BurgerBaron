@@ -285,8 +285,9 @@ public class Burger {
 			if (currentBun.peek().equals(ingredBot) ||  currentBun.peek().equals(ingredMid) 
 					|| currentBun.peek().equals(ingredTop)) {
 				currentBun.pop();
-			} 
-			holder.push(currentBun.pop());			
+			} else {
+				holder.push(currentBun.pop());	
+			}
 		}			
 		while (!holder.isEmpty()) {
 			currentBun.push(holder.pop());
