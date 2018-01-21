@@ -59,12 +59,4 @@ public class MyStack<T> {
 	public boolean isEmpty() {
 		return myLinkedList.isEmpty();
 	}
-	
-	/**
-	 * 
-	 */
-	public String toString() {
-		return null;
-		
-	}
 }
