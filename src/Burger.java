@@ -92,7 +92,6 @@ public class Burger {
 	 */
 	public void addCategory(String theType) {
 		MyStack<String> catHolder = new MyStack<>();
-		//MyStack<String> holder2 = new MyStack<>();
 		if (theType.equals("Cheese")) {
 			addCheese(catHolder, Ingredients.CHEDDAR, Ingredients.MOZZARELLA, Ingredients.PEPPERJACK);
 			
