@@ -105,7 +105,7 @@ public class Main {
 	public static void testParse() {
 //		parseLine("Burger");
 //		parseLine("Baron Burger");
-//		parseLine("Double Chicken Burger with Cheese Ketchup");
+		parseLine("Double Chicken Burger with Cheese Ketchup");
 		parseLine("Double Baron Burger with no Cheese but Mozzarella");
 		parseLine("Single Burger with Veggies but no Lettuce");
 		parseLine("Baron Burger with no Veggies Sauce but Baron-Sauce");
