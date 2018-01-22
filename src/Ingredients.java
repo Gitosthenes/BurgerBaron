@@ -10,7 +10,7 @@ public interface Ingredients {
 	String PICKLE = "Pickle";
 	String BUN = "Bun";
 	String MAYONNAISE = "Mayonnaise";
-	String BARON_SAUCE = "Barron-Sauce";
+	String BARON_SAUCE = "Baron-Sauce";
 	String LETTUCE = "Lettuce";
 	String TOMATO = "Tomato";
 	String ONIONS = "Onions";

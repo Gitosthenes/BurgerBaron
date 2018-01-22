@@ -15,27 +15,27 @@ public class Main {
 	 * @param theArgs command line arguments in the form of text file names.
 	 * @throws IOException when file passed in cannot be found or is not a text file.
 	 */
-	public static void main(final String[] theArgs) throws IOException {
-//		FileReader inputStream = null;
-//		
-//		try {
-//			for (final String arg : theArgs) {
-//				inputStream = new FileReader(arg);
-//				BufferedReader bufferedStream = new BufferedReader(inputStream);
-//				String line;
-//				int count = 0;
-//				while ((line = bufferedStream.readLine()) != null) {
-//					System.out.print("Processing Order "+ count++ + ": ");
+	public static void main(String[] theArgs) throws IOException {
+		FileReader inputStream = null;		
+//		theArgs = new String[] {"test.txt"};
+		try {
+			for (final String arg : theArgs) {
+				inputStream = new FileReader(arg);
+				BufferedReader bufferedStream = new BufferedReader(inputStream);
+				String line;
+				int count = 0;
+				while ((line = bufferedStream.readLine()) != null) {
+					System.out.print("Processing Order "+ count++ + ": ");
 //					System.out.println(line); // useful for debugging
-//					parseLine(line);
-//					System.out.println();
-//				}
-//					bufferedStream.close();
-//			}
-//		} finally {}
+					parseLine(line);
+					System.out.println();
+				}
+					bufferedStream.close();
+			}
+		} finally {}
 	
 //		testParse();
-		testToString();
+//		testToString();
 	}
 	
 	/**
