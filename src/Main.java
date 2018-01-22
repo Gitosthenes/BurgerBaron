@@ -16,7 +16,6 @@ public class Main {
 	 * @throws IOException when file passed in cannot be found or is not a text file.
 	 */
 	public static void main(final String[] theArgs) throws IOException {
-<<<<<<< HEAD
 //		FileReader inputStream = null;
 //		
 //		try {
@@ -37,28 +36,6 @@ public class Main {
 	
 //		testParse();
 		testToString();
-=======
-		FileReader inputStream = null;
-		
-//		try {
-//			for (final String arg : theArgs) {
-//				inputStream = new FileReader(arg);
-//				BufferedReader bufferedStream = new BufferedReader(inputStream);
-//				String line;
-//				int count = 0;
-//				while ((line = bufferedStream.readLine()) != null) {
-//					System.out.print("Processing Order "+ count++ + ": ");
-//					System.out.println(line); // useful for debugging
-//					parseLine(line);
-//					System.out.println();
-//				}
-//					bufferedStream.close();
-//			}
-//		} finally {}
-		
-		testParse();
-//		testMyStack();
->>>>>>> branch 'master' of https://github.com/TheNKetchum/BurgerBaron
 	}
 	
 	/**
