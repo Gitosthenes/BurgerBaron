@@ -3,26 +3,26 @@ import java.io.*;
 public class Main {
 
 	public static void main(final String[] theArgs) throws IOException {
-		FileReader inputStream = null;
-		
-		try {
-			for (final String arg : theArgs) {
-				inputStream = new FileReader(arg);
-				BufferedReader bufferedStream = new BufferedReader(inputStream);
-				String line;
-				int count = 0;
-				while ((line = bufferedStream.readLine()) != null) {
-					System.out.print("Processing Order "+ count++ + ": ");
-					System.out.println(line); // useful for debugging
-					parseLine(line);
-					System.out.println();
-				}
-					bufferedStream.close();
-			}
-		} finally {}
+//		FileReader inputStream = null;
+//		
+//		try {
+//			for (final String arg : theArgs) {
+//				inputStream = new FileReader(arg);
+//				BufferedReader bufferedStream = new BufferedReader(inputStream);
+//				String line;
+//				int count = 0;
+//				while ((line = bufferedStream.readLine()) != null) {
+//					System.out.print("Processing Order "+ count++ + ": ");
+//					System.out.println(line); // useful for debugging
+//					parseLine(line);
+//					System.out.println();
+//				}
+//					bufferedStream.close();
+//			}
+//		} finally {}
 	
 //		testParse();
-//		testToString();
+		testToString();
 	}
 	
 	/** Tests toString method in Burger class for correct output. */
