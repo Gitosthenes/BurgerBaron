@@ -208,24 +208,15 @@ public class Burger {
 	 * @param theType ingredient that will be remove to the Burger
 	 */
 	public void removeIngredient(String theType) {
-		if (theType.equals(Ingredients.CHEDDAR) || theType.equals(Ingredients.MOZZARELLA)
-				|| theType.equals(Ingredients.PEPPERJACK)) {
-			removeIngredHelp(myBurgerBottom, theType);
-			
-		} else if (theType.equals(Ingredients.MAYONNAISE) || theType.equals(Ingredients.BARON_SAUCE)) {			
+		if (theType.equals(Ingredients.MAYONNAISE) || theType.equals(Ingredients.BARON_SAUCE)
+				|| theType.equals(Ingredients.LETTUCE) || theType.equals(Ingredients.TOMATO)
+				|| theType.equals(Ingredients.ONIONS)) {			
 			removeIngredHelp(myBurgerTop, theType);
 		
-		} else if (theType.equals(Ingredients.KETCHUP) || theType.equals(Ingredients.MUSTARD)) {
+		} else {
 			removeIngredHelp(myBurgerBottom, theType);
 			
-		} else if (theType.equals(Ingredients.LETTUCE) || theType.equals(Ingredients.TOMATO)
-				|| theType.equals(Ingredients.ONIONS)) {
-			removeIngredHelp(myBurgerTop, theType);
-			
-		} else if (theType.equals(Ingredients.MUSHROOMS)) {
-			removeIngredHelp(myBurgerBottom, theType);
-			
-		}
+		} 
 	}
 	
 	/**
@@ -316,9 +307,9 @@ public class Burger {
 		
 		MyStack<String> holder = new MyStack<>();
 		while (!currentBun.isEmpty()) {
-			if (currentBun.peek().equals(ingredBot) ||  currentBun.peek().equals(ingredMid) 
-					|| currentBun.peek().equals(ingredTop)
-					|| currentBun.peek().equals(ingredTop2)) {
+			if (ingredBot.equals(currentBun.peek()) ||  ingredMid.equals(currentBun.peek()) 
+					|| ingredTop.equals(currentBun.peek())
+					|| ingredTop2.equals(currentBun.peek())) {
 				currentBun.pop();
 			} else {
 				holder.push(currentBun.pop());	
