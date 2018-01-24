@@ -15,6 +15,7 @@ public class Burger {
  	/** Keeps track of the number of patties on the burger. */
  	private int myPattyCount;
 
+ 	/** Type of patty on the burger */
 	private String myPattyType;
 
 	/**
@@ -32,7 +33,7 @@ public class Burger {
 		} else {
 			makeBasic();
 		}
-		
+		myPattyType = Ingredients.BEEF_PATTY;
 		myPattyCount++;
 	}
 
@@ -73,16 +74,20 @@ public class Burger {
 	 * Adds one patty to the Burger up to the maximum of 3. 
 	 */
 	public void addPatty() {
-		myBurgerBottom.push(Ingredients.BEEF_PATTY);
-		myPattyCount++;
+		if (myPattyCount < 3) {
+			myBurgerBottom.push(myPattyType);
+			myPattyCount++;
+		}
 	}
 
 	/**
 	 * Removes one patty from the Burger down to the minimum of 1. 
 	 */
 	public void removePatty() {
-		myBurgerBottom.pop();
-		myPattyCount--;
+		if (myPattyCount > 0) {
+			myBurgerBottom.pop();
+			myPattyCount--;
+		}
 	}
 	
 	/**

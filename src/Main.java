@@ -17,7 +17,7 @@ public class Main {
 	 */
 	public static void main(String[] theArgs) throws IOException {
 		FileReader inputStream = null;		
-		theArgs = new String[] {"test.txt"};
+//		theArgs = new String[] {"test.txt"};
 		try {
 			for (final String arg : theArgs) {
 				inputStream = new FileReader(arg);
@@ -36,13 +36,47 @@ public class Main {
 	
 //		testParse();
 //		testToString();
+		testBurger();
 	}
 	
 	/**
-	 * 
+	 * Tests Burger for proper functionality.
 	 */
 	public static void testBurger() {
+		//Tests constructor by initializing an instance of Burger.
+		Burger testBaron = new Burger(true);		
+		Burger testBasic = new Burger(false);
+		System.out.println("Testing Baron Burger: " + testBaron.toString());
+		System.out.println("Testing Basic Burger: " + testBasic.toString());
 		
+		
+		//Tests addPatty method. addPatty should only allow a maximum of 3 patties on the burger.
+		testBasic = new Burger(false);
+		for (int i = 0; i < 10; i++) {
+			testBasic.addPatty();
+		}
+		System.out.println("Testing addPatty method: " + testBasic.toString());
+		
+		//Tests changePatties method. changePatties should change all the patties on the burger to the
+		// patty type specified in the parameter.
+//		testBasic.changePatties(Ingredients.CHICKEN_PATTY);
+//		System.out.println("Testing changePatties method: " + testBasic.toString());
+		
+		//Tests removePatty method. removePatty should keep 1 patty on the burger.
+		testBasic = new Burger(false);
+		for (int i = 0; i < 10; i++) {
+			testBasic.removePatty();
+		}
+		System.out.println("Testing removePatty method: " + testBasic.toString());
+		
+		//Tests addCategory method.
+		testBasic = new Burger(false);
+		testBasic.addCategory("Cheese");
+		System.out.println("Testing addCategory method: " + testBasic.toString());
+		
+		//Tests removeCategory method.
+		testBasic.removeCategory("Cheese");
+		System.out.println("Testing removeCategory method: " + testBasic.toString());		
 	}
 	
 	/**
