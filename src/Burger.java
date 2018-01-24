@@ -92,24 +92,42 @@ public class Burger {
 	 */
 	public void addCategory(String theType) {
 		MyStack<String> catHolder = new MyStack<>();
-		if (theType.equals("Cheese")) {
-			addCheese(catHolder, Ingredients.CHEDDAR, Ingredients.MOZZARELLA, Ingredients.PEPPERJACK);
+		MyStack<String> addCatHolder = new MyStack<>();
+		if ("Cheese".equals(theType)) {			
+			addCatHolder.push(Ingredients.PEPPERJACK);
+			addCatHolder.push(Ingredients.MOZZARELLA);
+			addCatHolder.push(Ingredients.CHEDDAR);
+			addCheese(addCatHolder);
 			
-		} else if (theType.equals("Sauce")) {
+		} else if ("Sauce".equals(theType)) {
 			//Puts mayonnaise and baron sauce on top bun
-			addSauce(myBurgerTop, catHolder, Ingredients.MAYONNAISE, Ingredients.BARON_SAUCE);
+			addCatHolder.push(Ingredients.BARON_SAUCE);
+			addCatHolder.push(Ingredients.MAYONNAISE);
+			addSauce(myBurgerTop, addCatHolder);
 			
 			//Puts ketchup and mustard on bottom bun
-			addSauce(myBurgerBottom, catHolder, Ingredients.KETCHUP, Ingredients.MUSTARD);
+			addCatHolder.push(Ingredients.MUSTARD);
+			addCatHolder.push(Ingredients.KETCHUP);
+			addSauce(myBurgerBottom, addCatHolder);
 			
-		} else if (theType.equals("Veggies")) {
+		} else if ("Veggies".equals(theType)) {
 			//Puts lettuce, tomato, and onions on top bun
-			addVeggies(myBurgerTop, catHolder, Ingredients.MAYONNAISE, Ingredients.BARON_SAUCE, 
-					Ingredients.LETTUCE, Ingredients.TOMATO, Ingredients.ONIONS);
+			addCatHolder.push(Ingredients.ONIONS);
+			addCatHolder.push(Ingredients.TOMATO);
+			addCatHolder.push(Ingredients.LETTUCE);
+			addCatHolder.push(Ingredients.PICKLE);			
+			addVeggies(myBurgerTop, addCatHolder);
 			
 			//Puts mushrooms on bottom bun
-			addVeggies(myBurgerBottom, catHolder, Ingredients.KETCHUP, Ingredients.MUSTARD, 
-					Ingredients.MUSHROOMS, "", "");
+			while (!(Ingredients.KETCHUP.equals(myBurgerBottom.peek()) 
+					|| Ingredients.MUSTARD.equals(myBurgerBottom.peek())
+					|| Ingredients.BUN.equals(myBurgerBottom.peek()))) {
+				catHolder.push(myBurgerBottom.pop());				
+			}
+			myBurgerBottom.push(Ingredients.MUSHROOMS);
+			while(!catHolder.isEmpty()) {
+				myBurgerBottom.push(catHolder.pop());
+			}
 		}
 	}
 		
@@ -119,26 +137,32 @@ public class Burger {
 	 * @param theType item that will be remove to the Burger
 	 */
 	public void removeCategory(String theType) {
-		MyStack<String> catHolder = new MyStack<>();
-		if (theType.equals("Cheese")) {
+		MyStack<String> removeIngred = new MyStack<>();
+		if ("Cheese".equals(theType)) {
 			//Removes cheddar, mozzarella, and pepperjack from top bun
-			removeIngredHelp(myBurgerBottom, catHolder, Ingredients.CHEDDAR, 
-					Ingredients.MOZZARELLA, Ingredients.PEPPERJACK);
+			removeCatHelp(myBurgerBottom, Ingredients.CHEDDAR, 
+					Ingredients.MOZZARELLA, Ingredients.PEPPERJACK, "");
 			
-		} else if (theType.equals("Sauce")) {
+//			removeIngred.push(Ingredients.CHEDDAR);
+//			removeIngred.push(Ingredients.MOZZARELLA);
+//			removeIngred.push(Ingredients.PEPPERJACK);
+//			removeCatHelp(myBurgerBottom, removeIngred);
+		} else if ("Sauce".equals(theType)) {
 			//Removes mayonnaise and baron sauce on top bun
-			removeIngredHelp(myBurgerTop, catHolder, Ingredients.MAYONNAISE, Ingredients.BARON_SAUCE, "");
+			removeCatHelp(myBurgerTop, Ingredients.MAYONNAISE, Ingredients.BARON_SAUCE, "", "");
 			
-			//Removes ketchup and mustard on bottom bun
-			removeIngredHelp(myBurgerBottom, catHolder, Ingredients.KETCHUP, Ingredients.MUSTARD, "");
+//			//Removes ketchup and mustard on bottom bun
+			removeCatHelp(myBurgerBottom, Ingredients.KETCHUP, Ingredients.MUSTARD, "", "");
 			
-		} else if (theType.equals("Veggies")) {
-			//Removes lettuce, tomato, and onions on top bun
-			removeIngredHelp(myBurgerTop, catHolder, Ingredients.LETTUCE, Ingredients.TOMATO, 
-					Ingredients.ONIONS);
+		} else if ("Veggies".equals(theType)) {
+			//Removes lettuce, tomato, pickles, and onions on top bun
+			removeCatHelp(myBurgerTop, Ingredients.LETTUCE, Ingredients.TOMATO, 
+					Ingredients.ONIONS, Ingredients.PICKLE);
 			
 			//Removes mushrooms on bottom bun
-			removeIngredHelp(myBurgerBottom, catHolder, Ingredients.MUSHROOMS, "", "");
+			removeCatHelp(myBurgerBottom, Ingredients.MUSHROOMS, "", "", "");
+			
+			
 		}
 	}
 	
@@ -149,24 +173,32 @@ public class Burger {
 	 */
 	public void addIngredient(String theType) {
 		MyStack<String> ingredHolder = new MyStack<>();
-		if (theType.equals(Ingredients.CHEDDAR) || theType.equals(Ingredients.MOZZARELLA)
-				|| theType.equals(Ingredients.PEPPERJACK)) {
-			addCheese(ingredHolder, theType, "", "");
+		MyStack<String> addIngredHolder = new MyStack<>();		
+		addIngredHolder.push(theType);
+		if (Ingredients.CHEDDAR.equals(theType) || Ingredients.MOZZARELLA.equals(theType)
+				|| Ingredients.PEPPERJACK.equals(theType)) {
+			addCheese(addIngredHolder);
 			
-		} else if (theType.equals(Ingredients.MAYONNAISE) || theType.equals(Ingredients.BARON_SAUCE)) {			
-			addSauce(myBurgerTop, ingredHolder, theType, "");
+		} else if (Ingredients.MAYONNAISE.equals(theType) || Ingredients.BARON_SAUCE.equals(theType)) {			
+			addSauce(myBurgerTop, addIngredHolder);
 		
-		} else if (theType.equals(Ingredients.KETCHUP) || theType.equals(Ingredients.MUSTARD)) {
-			addSauce(myBurgerBottom, ingredHolder, theType, "");
+		} else if (Ingredients.KETCHUP.equals(theType) || Ingredients.MUSTARD.equals(theType)) {
+			addSauce(myBurgerBottom, addIngredHolder);
 			
-		} else if (theType.equals(Ingredients.LETTUCE) || theType.equals(Ingredients.TOMATO)
-				|| theType.equals(Ingredients.ONIONS)) {
-			addVeggies(myBurgerTop, ingredHolder, Ingredients.MAYONNAISE, Ingredients.BARON_SAUCE, 
-					theType, "", "");
+		} else if (Ingredients.LETTUCE.equals(theType) || Ingredients.TOMATO.equals(theType)
+				|| Ingredients.ONIONS.equals(theType)) {
+			addVeggies(myBurgerTop, addIngredHolder);
 			
-		} else if (theType.equals(Ingredients.MUSHROOMS)) {
-			addVeggies(myBurgerBottom, ingredHolder, Ingredients.KETCHUP, Ingredients.MUSTARD, 
-					theType, "", "");
+		} else if (Ingredients.MUSHROOMS.equals(theType)) {
+			while (!(Ingredients.KETCHUP.equals(myBurgerBottom.peek()) 
+					|| Ingredients.MUSTARD.equals(myBurgerBottom.peek())
+					|| Ingredients.BUN.equals(myBurgerBottom.peek()))) {
+				ingredHolder.push(myBurgerBottom.pop());				
+			}
+			myBurgerBottom.push(Ingredients.MUSHROOMS);
+			while(!ingredHolder.isEmpty()) {
+				myBurgerBottom.push(ingredHolder.pop());
+			}
 		}
 	}
 	
@@ -176,23 +208,22 @@ public class Burger {
 	 * @param theType ingredient that will be remove to the Burger
 	 */
 	public void removeIngredient(String theType) {
-		MyStack<String> ingredHolder = new MyStack<>();
 		if (theType.equals(Ingredients.CHEDDAR) || theType.equals(Ingredients.MOZZARELLA)
 				|| theType.equals(Ingredients.PEPPERJACK)) {
-			removeIngredHelp(myBurgerBottom, ingredHolder, theType, "", "");
+			removeIngredHelp(myBurgerBottom, theType);
 			
 		} else if (theType.equals(Ingredients.MAYONNAISE) || theType.equals(Ingredients.BARON_SAUCE)) {			
-			removeIngredHelp(myBurgerTop, ingredHolder, theType, "", "");
+			removeIngredHelp(myBurgerTop, theType);
 		
 		} else if (theType.equals(Ingredients.KETCHUP) || theType.equals(Ingredients.MUSTARD)) {
-			removeIngredHelp(myBurgerBottom, ingredHolder, theType, "", "");
+			removeIngredHelp(myBurgerBottom, theType);
 			
 		} else if (theType.equals(Ingredients.LETTUCE) || theType.equals(Ingredients.TOMATO)
 				|| theType.equals(Ingredients.ONIONS)) {
-			removeIngredHelp(myBurgerTop, ingredHolder, theType, "", "");
+			removeIngredHelp(myBurgerTop, theType);
 			
 		} else if (theType.equals(Ingredients.MUSHROOMS)) {
-			removeIngredHelp(myBurgerBottom, ingredHolder, theType, "", "");
+			removeIngredHelp(myBurgerBottom, theType);
 			
 		}
 	}
@@ -205,17 +236,16 @@ public class Burger {
 	 * @param cheeseMid cheese on middle
 	 * @param cheeseTop cheese on top
 	 */
-	private void addCheese(MyStack<String> holder, String cheeseBot, String cheeseMid, 
-			String cheeseTop) {	
-		
+	private void addCheese(MyStack<String> cheeseHolder) {	
+		MyStack<String> holder = new MyStack<>();
 		// Only enter if there are more than 1 patty
 		while (myPattyCount > 1) {
 			holder.push(myBurgerBottom.pop());
 			myPattyCount--;
 		}
-		myBurgerBottom.push(cheeseBot);
-		myBurgerBottom.push(cheeseMid);
-		myBurgerBottom.push(cheeseTop);
+		while (!cheeseHolder.isEmpty()) {
+			myBurgerBottom.push(cheeseHolder.pop());
+		}
 		while (!holder.isEmpty()) {
 			myBurgerBottom.push(holder.pop());
 			myPattyCount++;
@@ -233,17 +263,19 @@ public class Burger {
 	 * @param veggieMid veggie in middle
 	 * @param veggieTop veggie on top
 	 */
-	private void addVeggies(MyStack<String> currentBun, MyStack<String> holder, 
-			String sauce1, String sauce2, String veggieBott, String veggieMid, String veggieTop) {
-
-		while (!currentBun.peek().equals(Ingredients.BUN)) {
+	private void addVeggies(MyStack<String> currentBun, MyStack<String> addVegHolder) {
+		MyStack<String> holder = new MyStack<>();
+		while (!currentBun.isEmpty()) {
 			holder.push(currentBun.pop());
-		}			
-		currentBun.push(veggieBott);
-		currentBun.push(veggieMid);	
-		currentBun.push(veggieTop);
+		}	
+		if (Ingredients.PICKLE.equals(addVegHolder.peek())) {
+			currentBun.push(addVegHolder.pop());
+		}		
 		while (!holder.isEmpty()) {
 			currentBun.push(holder.pop());
+		}
+		while (!addVegHolder.isEmpty()) {
+			currentBun.push(addVegHolder.pop());
 		}
 		
 	}
@@ -256,14 +288,14 @@ public class Burger {
 	 * @param bottomSauce sauce on bottom
 	 * @param topSauce sauce on top
 	 */
-	private void addSauce(MyStack<String> currentBun, MyStack<String> holder, 
-			String bottomSauce, String topSauce) {
-		
+	private void addSauce(MyStack<String> currentBun, MyStack<String> addSauceholder) {
+		MyStack<String> holder = new MyStack<>();
 		while (currentBun.peek() != Ingredients.BUN) {
 			holder.push(currentBun.pop());
-		}			
-		currentBun.push(bottomSauce);
-		currentBun.push(topSauce);			
+		}	
+		while (!addSauceholder.isEmpty()) {
+			currentBun.push(addSauceholder.pop());
+		}
 		while (!holder.isEmpty()) {
 			currentBun.push(holder.pop());
 		}
@@ -278,20 +310,40 @@ public class Burger {
 	 * @param ingredMid ingredient in middle
 	 * @param ingredTop ingredient on top
 	 */
-	private void removeIngredHelp(MyStack<String> currentBun, MyStack<String> holder, 
-			String ingredBot, String ingredMid, String ingredTop) {
+	private void removeCatHelp(MyStack<String> currentBun, 
+//			MyStack<String> removeIngred) {
+			String ingredBot, String ingredMid, String ingredTop, String ingredTop2) {
 		
+		MyStack<String> holder = new MyStack<>();
 		while (!currentBun.isEmpty()) {
 			if (currentBun.peek().equals(ingredBot) ||  currentBun.peek().equals(ingredMid) 
-					|| currentBun.peek().equals(ingredTop)) {
+					|| currentBun.peek().equals(ingredTop)
+					|| currentBun.peek().equals(ingredTop2)) {
 				currentBun.pop();
 			} else {
 				holder.push(currentBun.pop());	
 			}
-		}			
+//			if (currentBun.peek().endsWith(removeIngred.peek())) {
+//				currentBun.pop();
+//				removeIngred.pop();
+//			} else {
+//				holder.push(currentBun.pop());	
+//
+//			}
+		}					
 		while (!holder.isEmpty()) {
 			currentBun.push(holder.pop());
 		}
+	}
+	
+	/**
+	 * Helper method to remove an ingredient from the bun.
+	 * 
+	 * @param currentBun either top or bottom bun
+	 * @param removeIngred ingredient to remove
+	 */
+	private void removeIngredHelp(MyStack<String> currentBun, String removeIngred) {
+		removeCatHelp(currentBun, removeIngred, "", "", "");
 	}
 		
 	/**
@@ -342,14 +394,8 @@ public class Burger {
 		}
 		//Appends ingredients in myBottomBurger (all ingredients for burger) to string.
 		while (!myBurgerBottom.isEmpty()) {
-			if (myBurgerBottom.peek().equals("")) {
-				myBurgerBottom.pop();
-			} else {
-				sb.append(myBurgerBottom.pop());
-				sb.append(", ");
-			}
-			
-			
+			sb.append(myBurgerBottom.pop());
+			sb.append(", ");
 		}
 		sb.delete(sb.length()-2, sb.length());
 		sb.append("]");

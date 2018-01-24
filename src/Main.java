@@ -17,7 +17,7 @@ public class Main {
 	 */
 	public static void main(String[] theArgs) throws IOException {
 		FileReader inputStream = null;		
-//		theArgs = new String[] {"test.txt"};
+		theArgs = new String[] {"test.txt"};
 		try {
 			for (final String arg : theArgs) {
 				inputStream = new FileReader(arg);
@@ -34,7 +34,7 @@ public class Main {
 			}
 		} finally {}
 	
-//		testParse();
+		testParse();
 //		testToString();
 	}
 	
@@ -103,12 +103,12 @@ public class Main {
 	 * 
 	 */
 	public static void testParse() {
-//		parseLine("Burger");
-//		parseLine("Baron Burger");
+		parseLine("Burger");
+		parseLine("Double Baron Burger");
 		parseLine("Double Chicken Burger with Cheese Ketchup");
 		parseLine("Double Baron Burger with no Cheese but Mozzarella");
-		parseLine("Single Burger with Veggies but no Lettuce");
-		parseLine("Baron Burger with no Veggies Sauce but Baron-Sauce");
+//		parseLine("Single Burger with Veggies but no Lettuce");
+//		parseLine("Baron Burger with no Veggies Sauce but Baron-Sauce");
 	}
 	
 	/**
