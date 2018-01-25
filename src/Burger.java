@@ -389,13 +389,47 @@ public class Burger {
 		}
 		//Appends ingredients in myBottomBurger (all ingredients for burger) to string.
 		while (!myBurgerBottom.isEmpty()) {
-			sb.append(myBurgerBottom.pop());
+			sb.append(myBurgerBottom.peek());
 			sb.append(", ");
+			myBurgerTop.push(myBurgerBottom.pop());
 		}
 		if (sb.length() > 1) {
 			sb.delete(sb.length()-2, sb.length());
 		}		
 		sb.append("]");
+		
+		if (myPattyCount == 1) {
+			boolean cheese = false;
+			while (!myBurgerTop.isEmpty()) {
+//				System.out.println("1");
+				if (myBurgerTop.peek().equals(Ingredients.MOZZARELLA)
+						|| myBurgerTop.peek().equals(Ingredients.PEPPERJACK)
+						|| myBurgerTop.peek().equals(Ingredients.CHEDDAR)) {
+					cheese = true;
+					myBurgerBottom.push(myBurgerTop.pop());
+				} else if (cheese && (!myBurgerTop.peek().equals(Ingredients.MOZZARELLA)
+						|| !myBurgerTop.peek().equals(Ingredients.PEPPERJACK)
+						|| !myBurgerTop.peek().equals(Ingredients.CHEDDAR))) {
+					break;
+				} else {
+					myBurgerBottom.push(myBurgerTop.pop());
+				}				
+			}
+		} else {
+			int currentPattyCount = myPattyCount;
+			while (currentPattyCount > 0) {
+//				System.out.println("2");
+
+				if (myBurgerTop.peek().equals(Ingredients.BEEF_PATTY)
+						|| myBurgerTop.peek().equals(Ingredients.CHICKEN_PATTY)
+						|| myBurgerTop.peek().equals(Ingredients.VEGGIE_PATTY)) {
+					myBurgerBottom.push(myBurgerTop.pop());
+					currentPattyCount--;
+				} else {
+					myBurgerBottom.push(myBurgerTop.pop());
+				}			
+			}
+		}		
 		return sb.toString();		
 	}	
 }

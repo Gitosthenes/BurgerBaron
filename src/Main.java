@@ -53,7 +53,7 @@ public class Main {
 		System.out.println("Testing Basic Burger constructor: " + testBasic.toString());		
 		
 		//Tests addPatty method. addPatty should only allow a maximum of 3 patties on the burger.
-		testBasic = new Burger(false);
+//		testBasic = new Burger(false);
 		for (int i = 0; i < 10; i++) {
 			testBasic.addPatty();
 		}
@@ -63,7 +63,7 @@ public class Main {
 		
 		//Tests changePatties method. changePatties should change all the patties on the burger to the
     	//patty type specified in the parameter.
-		testBasic = new Burger(false);
+//		testBasic = new Burger(false);
 		for (int i = 0; i < 10; i++) {
 			testBasic.addPatty();
 		}
@@ -73,7 +73,7 @@ public class Main {
 		System.out.println("\tResult: " + testBasic.toString());
 		
 		//Tests removePatty method. removePatty should keep 1 patty on the burger.
-		testBasic = new Burger(false);
+//		testBasic = new Burger(false);
 		for (int i = 0; i < 10; i++) {
 			testBasic.removePatty();
 		}		
@@ -84,9 +84,8 @@ public class Main {
 		
 		//Tests addCategory method. After method call, the burger should contain all 
 		//ingredients of the specified category.
-		testBasic = new Burger(false);
+//		testBasic = new Burger(false);
 		System.out.println("Testing addCategory method: \n\tBefore method call: " + testBasic.toString());
-		testBasic = new Burger(false);
 		testBasic.addCategory("Cheese");
 		// String literals that are not a category for the burger will not be affect burger.
 		testBasic.addCategory("NOT CATEGORY");
@@ -95,11 +94,9 @@ public class Main {
 		
 		//Tests removeCategory method. After method call, the burger should remove 
 		//all ingredients of the specified category.
-		testBaron = new Burger(false);
+//		testBaron = new Burger(false);
 		testBaron.addCategory("Cheese");
 		System.out.println("Testing removeCategory method: \n\tBefore method call: " + testBaron.toString());
-		testBaron = new Burger(false);
-		testBaron.addCategory("Cheese");
 		testBaron.removeCategory("Cheese");
 		// String literals that are not a category for the burger will not be affect burger.
 		testBasic.addCategory("NOT CATEGORY");
@@ -107,9 +104,8 @@ public class Main {
 		System.out.println("\tAfter method call:  " + testBaron.toString());	
 		
 		// Tests addIngredients method. This method will add the ingredient in the correct spot on the burger. 
-		testBasic = new Burger(false);
+//		testBasic = new Burger(false);
 		System.out.println("Testing addIngredient method: \n\tBefore method call: " + testBasic.toString());
-		testBasic = new Burger(false);
 		testBasic.addIngredient(Ingredients.MOZZARELLA);
 		testBasic.addIngredient(Ingredients.MUSHROOMS);
 		testBasic.addIngredient(Ingredients.LETTUCE);
@@ -120,9 +116,8 @@ public class Main {
 		System.out.println("\tAfter method call: " + testBasic.toString());
 		
 		// Tests removeIngredients method. This method will remove the specified ingredient.
-		testBaron = new Burger(true);
+//		testBaron = new Burger(true);
 		System.out.println("Testing removeIngredients method: \n\tBefore method call: " + testBaron.toString());
-		testBaron = new Burger(true);
 		// String literals that are not an ingredient for the burger will not be removed.
 		testBaron.removeIngredient("NOT INGREDIENT");
 		testBaron.removeIngredient(Ingredients.BARON_SAUCE);
