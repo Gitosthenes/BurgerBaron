@@ -15,9 +15,6 @@ public class Burger {
  	/** Keeps track of the number of patties on the burger. */
  	private int myPattyCount;
 
- 	/** Type of patty on the burger */
-	private String myPattyType;
-
 	/**
 	 * A constructor that initializes a Burger with only a bun and
 	 * patty if theWorks is false and a Baron Burger if theWorks is true.
@@ -33,7 +30,6 @@ public class Burger {
 		} else {
 			makeBasic();
 		}
-		myPattyType = Ingredients.BEEF_PATTY;
 		myPattyCount++;
 	}
 
@@ -43,11 +39,11 @@ public class Burger {
 	 * @param thePattyType the patty type that will change all patties 
 	 */
 	public void changePatties(String thePattyType) {
-//		String patty;
+		String patty;
 		if ("Chicken".endsWith(thePattyType)) {
-			myPattyType = Ingredients.CHICKEN_PATTY;
+			patty = Ingredients.CHICKEN_PATTY;
 		} else {
-			myPattyType = Ingredients.VEGGIE_PATTY;
+			patty = Ingredients.VEGGIE_PATTY;
 		}
 		MyStack<String> cheeseHolder = new MyStack<>();
 		int currentPattyCount = myPattyCount;
@@ -59,13 +55,13 @@ public class Burger {
 				currentPattyCount--;
 			}
 		}
-		myBurgerBottom.push(myPattyType);
+		myBurgerBottom.push(patty);
 		currentPattyCount++;
 		while (!cheeseHolder.isEmpty()) {
 			myBurgerBottom.push(cheeseHolder.pop());
 		}
 		while (currentPattyCount < myPattyCount) {
-			myBurgerBottom.push(myPattyType);
+			myBurgerBottom.push(patty);
 			currentPattyCount++;
 		}
 	}
@@ -75,7 +71,7 @@ public class Burger {
 	 */
 	public void addPatty() {
 		if (myPattyCount < 3) {
-			myBurgerBottom.push(myPattyType);
+			myBurgerBottom.push(Ingredients.BEEF_PATTY);
 			myPattyCount++;
 		}
 	}
@@ -84,7 +80,7 @@ public class Burger {
 	 * Removes one patty from the Burger down to the minimum of 1. 
 	 */
 	public void removePatty() {
-		if (myPattyCount > 0) {
+		if (myPattyCount > 1) {
 			myBurgerBottom.pop();
 			myPattyCount--;
 		}
@@ -145,29 +141,33 @@ public class Burger {
 		MyStack<String> removeIngred = new MyStack<>();
 		if ("Cheese".equals(theType)) {
 			//Removes cheddar, mozzarella, and pepperjack from top bun
-			removeCatHelp(myBurgerBottom, Ingredients.CHEDDAR, 
-					Ingredients.MOZZARELLA, Ingredients.PEPPERJACK, "");
+			removeIngred.push(Ingredients.CHEDDAR);
+			removeIngred.push(Ingredients.MOZZARELLA);
+			removeIngred.push(Ingredients.PEPPERJACK);
+			removeCatHelp(myBurgerBottom, removeIngred);
 			
-//			removeIngred.push(Ingredients.CHEDDAR);
-//			removeIngred.push(Ingredients.MOZZARELLA);
-//			removeIngred.push(Ingredients.PEPPERJACK);
-//			removeCatHelp(myBurgerBottom, removeIngred);
 		} else if ("Sauce".equals(theType)) {
 			//Removes mayonnaise and baron sauce on top bun
-			removeCatHelp(myBurgerTop, Ingredients.MAYONNAISE, Ingredients.BARON_SAUCE, "", "");
+			removeIngred.push(Ingredients.MAYONNAISE);
+			removeIngred.push(Ingredients.BARON_SAUCE);
+			removeCatHelp(myBurgerTop, removeIngred);
 			
-//			//Removes ketchup and mustard on bottom bun
-			removeCatHelp(myBurgerBottom, Ingredients.KETCHUP, Ingredients.MUSTARD, "", "");
+			//Removes ketchup and mustard on bottom bun
+			removeIngred.push(Ingredients.KETCHUP);
+			removeIngred.push(Ingredients.MUSTARD);
+			removeCatHelp(myBurgerBottom, removeIngred);
 			
 		} else if ("Veggies".equals(theType)) {
 			//Removes lettuce, tomato, pickles, and onions on top bun
-			removeCatHelp(myBurgerTop, Ingredients.LETTUCE, Ingredients.TOMATO, 
-					Ingredients.ONIONS, Ingredients.PICKLE);
+			removeIngred.push(Ingredients.PICKLE);
+			removeIngred.push(Ingredients.LETTUCE);
+			removeIngred.push(Ingredients.TOMATO);
+			removeIngred.push(Ingredients.ONIONS);
+			removeCatHelp(myBurgerTop, removeIngred);
 			
 			//Removes mushrooms on bottom bun
-			removeCatHelp(myBurgerBottom, Ingredients.MUSHROOMS, "", "", "");
-			
-			
+			removeIngred.push(Ingredients.MUSHROOMS);
+			removeCatHelp(myBurgerBottom, removeIngred);
 		}
 	}
 	
@@ -215,12 +215,11 @@ public class Burger {
 	public void removeIngredient(String theType) {
 		if (theType.equals(Ingredients.MAYONNAISE) || theType.equals(Ingredients.BARON_SAUCE)
 				|| theType.equals(Ingredients.LETTUCE) || theType.equals(Ingredients.TOMATO)
-				|| theType.equals(Ingredients.ONIONS)) {			
+				|| theType.equals(Ingredients.ONIONS) || theType.equals(Ingredients.PICKLE)) {			
 			removeIngredHelp(myBurgerTop, theType);
 		
 		} else {
-			removeIngredHelp(myBurgerBottom, theType);
-			
+			removeIngredHelp(myBurgerBottom, theType);			
 		} 
 	}
 	
@@ -306,26 +305,16 @@ public class Burger {
 	 * @param ingredMid ingredient in middle
 	 * @param ingredTop ingredient on top
 	 */
-	private void removeCatHelp(MyStack<String> currentBun, 
-//			MyStack<String> removeIngred) {
-			String ingredBot, String ingredMid, String ingredTop, String ingredTop2) {
-		
+	private void removeCatHelp(MyStack<String> currentBun, MyStack<String> removeIngred) {		
 		MyStack<String> holder = new MyStack<>();
-		while (!currentBun.isEmpty()) {
-			if (ingredBot.equals(currentBun.peek()) ||  ingredMid.equals(currentBun.peek()) 
-					|| ingredTop.equals(currentBun.peek())
-					|| ingredTop2.equals(currentBun.peek())) {
+		while (!removeIngred.isEmpty()) {
+//			System.out.println(currentBun.peek()+", "+removeIngred.peek());
+			if (currentBun.peek().equals(removeIngred.peek())) {
 				currentBun.pop();
+				removeIngred.pop();
 			} else {
-				holder.push(currentBun.pop());	
-			}
-//			if (currentBun.peek().endsWith(removeIngred.peek())) {
-//				currentBun.pop();
-//				removeIngred.pop();
-//			} else {
-//				holder.push(currentBun.pop());	
-//
-//			}
+				holder.push(currentBun.pop());
+			}			
 		}					
 		while (!holder.isEmpty()) {
 			currentBun.push(holder.pop());
@@ -338,8 +327,18 @@ public class Burger {
 	 * @param currentBun either top or bottom bun
 	 * @param removeIngred ingredient to remove
 	 */
-	private void removeIngredHelp(MyStack<String> currentBun, String removeIngred) {
-		removeCatHelp(currentBun, removeIngred, "", "", "");
+	private void removeIngredHelp(MyStack<String> currentBun, String remove) {
+		MyStack<String> holder = new MyStack<>();
+		while (!currentBun.isEmpty()) {
+			if (currentBun.peek().equals(remove)){
+				currentBun.pop();
+			} else {
+				holder.push(currentBun.pop());
+			}
+		}
+		while (!holder.isEmpty()) {
+			currentBun.push(holder.pop());
+		}
 	}
 		
 	/**
@@ -393,7 +392,9 @@ public class Burger {
 			sb.append(myBurgerBottom.pop());
 			sb.append(", ");
 		}
-		sb.delete(sb.length()-2, sb.length());
+		if (sb.length() > 1) {
+			sb.delete(sb.length()-2, sb.length());
+		}		
 		sb.append("]");
 		return sb.toString();		
 	}	
