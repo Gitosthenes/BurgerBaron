@@ -17,7 +17,7 @@ public class Main {
 	 */
 	public static void main(String[] theArgs) throws IOException {
 		FileReader inputStream = null;		
-		theArgs = new String[] {"test.txt"};
+//		theArgs = new String[] {"test.txt"};
 		try {
 			for (final String arg : theArgs) {
 				inputStream = new FileReader(arg);
@@ -38,7 +38,7 @@ public class Main {
 		
 		//Uncomment methods below to view test results of the Burger and MyStack class.
 //		testToString();
-//		testBurger();
+		testBurger();
 //		testMyStack();
 	}
 	
@@ -85,11 +85,11 @@ public class Main {
 		//Tests addCategory method. After method call, the burger should contain all 
 		//ingredients of the specified category.
 		testBasic = new Burger(false);
-		testBasic.addCategory("Cheese");
 		System.out.println("Testing addCategory method: \n\tBefore method call: " + testBasic.toString());
 		testBasic = new Burger(false);
 		testBasic.addCategory("Cheese");
-		testBasic.removeCategory("Cheese");
+		// String literals that are not a category for the burger will not be affect burger.
+		testBasic.addCategory("NOT CATEGORY");
 		System.out.println("\tMethod will add all cheese to burger");
 		System.out.println("\tAfter method call:  " + testBasic.toString());
 		
@@ -101,23 +101,30 @@ public class Main {
 		testBaron = new Burger(false);
 		testBaron.addCategory("Cheese");
 		testBaron.removeCategory("Cheese");
+		// String literals that are not a category for the burger will not be affect burger.
+		testBasic.addCategory("NOT CATEGORY");
 		System.out.println("\tMethod will remove all cheese from burger");
 		System.out.println("\tAfter method call:  " + testBaron.toString());	
 		
-		// Tests addIngredients method. This method will add the ingredient in the correct spot on the burger.
+		// Tests addIngredients method. This method will add the ingredient in the correct spot on the burger. 
 		testBasic = new Burger(false);
 		System.out.println("Testing addIngredient method: \n\tBefore method call: " + testBasic.toString());
 		testBasic = new Burger(false);
 		testBasic.addIngredient(Ingredients.MOZZARELLA);
 		testBasic.addIngredient(Ingredients.MUSHROOMS);
 		testBasic.addIngredient(Ingredients.LETTUCE);
-		System.out.println("\tMethod will add Mozzarella, Mushrooms, and Lettuce");
+		testBasic.addIngredient(Ingredients.PICKLE);
+		// String literals that are not an ingredient for the burger will not be added.
+		testBaron.addIngredient("NOT INGREDIENT");
+		System.out.println("\tMethod will add Mozzarella, Mushrooms, Pickle, and Lettuce");
 		System.out.println("\tAfter method call: " + testBasic.toString());
 		
 		// Tests removeIngredients method. This method will remove the specified ingredient.
 		testBaron = new Burger(true);
 		System.out.println("Testing removeIngredients method: \n\tBefore method call: " + testBaron.toString());
 		testBaron = new Burger(true);
+		// String literals that are not an ingredient for the burger will not be removed.
+		testBaron.removeIngredient("NOT INGREDIENT");
 		testBaron.removeIngredient(Ingredients.BARON_SAUCE);
 		testBaron.removeIngredient(Ingredients.PEPPERJACK);
 		testBaron.removeIngredient(Ingredients.PICKLE);

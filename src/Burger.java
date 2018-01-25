@@ -191,7 +191,7 @@ public class Burger {
 			addSauce(myBurgerBottom, addIngredHolder);
 			
 		} else if (Ingredients.LETTUCE.equals(theType) || Ingredients.TOMATO.equals(theType)
-				|| Ingredients.ONIONS.equals(theType)) {
+				|| Ingredients.ONIONS.equals(theType) || Ingredients.PICKLE.equals(theType)) {
 			addVeggies(myBurgerTop, addIngredHolder);
 			
 		} else if (Ingredients.MUSHROOMS.equals(theType)) {
