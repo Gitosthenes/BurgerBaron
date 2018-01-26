@@ -153,7 +153,6 @@ public class Main {
 		
 		//Tests removeCategory method. After method call, the burger should remove 
 		//all ingredients of the specified category.
-		testBaron.addCategory("Cheese");
 		System.out.println("Testing removeCategory method: \n\tBefore method call: " + testBaron.toString());
 		testBaron.removeCategory("Cheese");
 		// String literals that are not a category for the burger will not be affect burger.
@@ -194,7 +193,7 @@ public class Main {
 		//Tests that push and size methods function properly.
 		System.out.println("Testing size every 10 pushes (up to 50)...");
 		for (int i = 1; i <= 50; i++) {
-			test.push(new Integer(i));
+			test.push(i);
 			if (i % 10 == 0) {
 				System.out.println("Expected Size: " + i + "\nActual Size: "
 								   + test.size() + "\n-------------------");
