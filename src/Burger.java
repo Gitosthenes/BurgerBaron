@@ -48,7 +48,9 @@ public class Burger {
 		MyStack<String> cheeseHolder = new MyStack<>();
 		int currentPattyCount = myPattyCount;
 		while (currentPattyCount > 0) {
-			if (myBurgerBottom.peek() != Ingredients.BEEF_PATTY) {
+			if (myBurgerBottom.peek() != Ingredients.BEEF_PATTY
+					&& myBurgerBottom.peek() != Ingredients.CHICKEN_PATTY
+					&& myBurgerBottom.peek() != Ingredients.VEGGIE_PATTY) {
 				cheeseHolder.push(myBurgerBottom.pop());
 			} else {
 				myBurgerBottom.pop();
@@ -382,6 +384,7 @@ public class Burger {
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
+		int bottom = myBurgerBottom.size();
 		sb.append("[");
 		//Builds full burger in correct order (top - bottom) in myBurgerBottom stack.
 		while (!myBurgerTop.isEmpty()) {
@@ -396,39 +399,10 @@ public class Burger {
 		if (sb.length() > 1) {
 			sb.delete(sb.length()-2, sb.length());
 		}		
-		sb.append("]");
-		
-		if (myPattyCount == 1) {
-			boolean cheese = false;
-			while (!myBurgerTop.isEmpty()) {
-//				System.out.println("1");
-				if (myBurgerTop.peek().equals(Ingredients.MOZZARELLA)
-						|| myBurgerTop.peek().equals(Ingredients.PEPPERJACK)
-						|| myBurgerTop.peek().equals(Ingredients.CHEDDAR)) {
-					cheese = true;
-					myBurgerBottom.push(myBurgerTop.pop());
-				} else if (cheese && (!myBurgerTop.peek().equals(Ingredients.MOZZARELLA)
-						|| !myBurgerTop.peek().equals(Ingredients.PEPPERJACK)
-						|| !myBurgerTop.peek().equals(Ingredients.CHEDDAR))) {
-					break;
-				} else {
-					myBurgerBottom.push(myBurgerTop.pop());
-				}				
-			}
-		} else {
-			int currentPattyCount = myPattyCount;
-			while (currentPattyCount > 0) {
-//				System.out.println("2");
-
-				if (myBurgerTop.peek().equals(Ingredients.BEEF_PATTY)
-						|| myBurgerTop.peek().equals(Ingredients.CHICKEN_PATTY)
-						|| myBurgerTop.peek().equals(Ingredients.VEGGIE_PATTY)) {
-					myBurgerBottom.push(myBurgerTop.pop());
-					currentPattyCount--;
-				} else {
-					myBurgerBottom.push(myBurgerTop.pop());
-				}			
-			}
+		sb.append("]");		
+		while (bottom > 0) {
+			myBurgerBottom.push(myBurgerTop.pop());
+			bottom--;
 		}		
 		return sb.toString();		
 	}	
